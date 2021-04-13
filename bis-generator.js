@@ -30,8 +30,7 @@
 
   /////////// Initiatilsation  ////////////
 
-  var allSelectedDataTab = []; // un tableau qui sert à mettre toutes les données d'une colonne pour générer la légende.
-
+//////// création de svg dynamique /////
   // Variable qui représente l'élément body sur lequel on se croche pour générer le contenu via d3.js
   var htmlBody = d3.select("#"+htmlIdPrefix+"zone");
 
@@ -48,7 +47,24 @@
       .append("svg")
       .attr("id", "svgZone")
       .attr("width", markWidth)
-      .attr("height", markHeight);
+      .attr("height", markHeight)
+      .attr("transform", "scale(0.5)");
+
+  var groupOrange = svgMark.append("g").attr("id", "groupOrange"); // création d'un layer svg pour les segment du groupe orange.
+
+
+// <line id="o0" class="segment" x1="0" y1="0" x2="250" y2="500" stroke="orange" stroke-width="20" />
+  groupOrange.append("line")
+    .attr("id", "o0")
+    .attr("class", "segment")
+    .attr("x1", "0")
+    .attr("y1", "0")
+    .attr("x2", "250")
+    .attr("y2", "500")
+    .attr("stroke", "orange")
+    .attr("stroke-width", "20")
+
+
 
   /**
   * Fonction qui affiche la légende de la carte avec la signification des couleurs.
