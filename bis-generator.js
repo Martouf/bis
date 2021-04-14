@@ -67,7 +67,23 @@
     hideAllSegment(); // cache tous les segments car ils ont la classe "segment"
     //showAllSegment();
 
-    showMarkFromCode("vc");
+    var genome = ["va","a3","o2","b5"];
+    // showMarkFromCode("vc"); // affiche le(s) segments qui correspondent à un code.
+    showMarkFromGenome(genome); // le génome est une tableau de code. ex: ["va","a3","o2","b5"]
+
+  /**
+  * Fonction qui supprime l'affichage de tous les segments.
+  *
+  * @param numberOfCode → int longueur du génome en nombre de code
+  * @return genome  → tableau → une liste de code qui est le génome complet d'une marque de famille.  ex: ["va","a3","o2","b5"]
+  */
+  function genomeGenerator() {
+    var svgStructure = d3.select("#structure");
+
+    svgStructure.selectAll(".segment")
+      .style("display", "none");
+  }
+
 
 /**
 * Fonction qui supprime l'affichage de tous les segments.
@@ -96,6 +112,17 @@ function showAllSegment() {
 /**
 * Fonction qui affiche les segments qui correspondent à un code fourni.
 *
+* @param genome  → tableau → une liste de code qui est le génome complet d'une marque de famille.  ex: ["va","a3","o2","b5"]
+* @return
+*/
+function showMarkFromGenome(genome) {
+
+  genome.forEach(showMarkFromCode); // pour chaque élément de la liste demande l'affichage du code
+}
+
+/**
+* Fonction qui affiche les segments qui correspondent à un code fourni.
+*
 * @param code  → string → UN seul code 2 lettres "base"+nombre hexadécimal: ex: ab ou r3
 * @return
 */
@@ -106,17 +133,8 @@ function showMarkFromCode(code) {
   var baseBravo = code.slice(0, 1); // extrait la première lettre d'un code. ex: r3 => r
   var indiceBravoHexa = code.slice(1, 2); // extrait le seconde caractère du code. C'est un nombre hexadécimal. 0-f
 
-  console.log("indiceBravoHexa:");
-  console.log(indiceBravoHexa);
-
   // transformation du code hexa en décimal.
   var indiceBravo = parseInt(indiceBravoHexa, 16);  // transformation du nombre hexadécimal en décimal. => f => 15
-
-  console.log("base:");
-  console.log(baseBravo);
-
-  console.log("indice:");
-  console.log(indiceBravo);
 
   // Obtient un tableau contenant la liste des segments. Provenant du tableau bravo.
   var segmentList = bravo[baseBravo][indiceBravo];
@@ -138,98 +156,6 @@ function showSegment(idHtmlSegment) {
 }
 
 
-// exemples
-
-  /**
-  * Fonction qui affiche la légende de la carte avec la signification des couleurs.
-  *
-  * Cette fonction est appellée par la fonction updateMap(....)
-  *
-  * @param classSeparatorsLegend → array  "tableau", liste des valeurs qui servent de séparateur. 1 de moins que des classe de valeurs. ex: 4,6,8,10,12,15,20  on les place dans un tableau pour paramétrer le domain. En ajoutant un 0 en début de liste on peut générer automatiquement le legendDomain si l'on a pas de valeur négative !
-  * @param colorSchemeLegend → string → le code de couleur issus de colorbrewer ex: RdYlGn  rouge vert divergent
-  * @param classNumberLegend  → int → nombre de classes (donc de couleurs) (idem que sur colorbrewer) Attention 3-9 pour saturation, 3-11 pour divergent.
-  * @param legendSeparatorsLegend  → array → La première valeur représente la borne inférieure. ex: 0,4,6,8,10,12,15,20 , sans spécialité, le reste est identique à classSeparators
-  * @param legendLabelsLegend  → array de sring → la légende des couleurs. ex: "< 4", "4+", "6+", "8+", "10+", "12+", "15+", "20+"
-  * @return
-  */
-  function showLegend(classSeparatorsLegend,colorSchemeLegend,classNumberLegend,legendSeparatorsLegend,legendLabelsLegend) {
-
-    // définition de l'échelle
-    var getMapColorLegend = d3.scale.threshold()
-        .domain(classSeparatorsLegend)
-        .range(colorbrewer[colorSchemeLegend][classNumberLegend]);
-
-    // ajoute la légende de la carte (au niveau de svgMap et pas de groupCarto afin de ne pas l'inclure dans le zoom). Place la légende dans une groupe qui s'appelle mapSimplegroupLegend
-    var legend = svgMap
-      .append("g").attr("id", "mapSimplegroupLegend")
-      .selectAll("g.legend")
-      .data(legendSeparatorsLegend)  // tableau de données définissant la légende  // old legendDomain
-      .enter().append("g") // crée un élément groupe svg au besoin.
-      .attr("class", "legend"); // donne la classe legend à chaque groupe qui représente une légende.
-
-      // décale la légende vers le haut où on a plus de place.
-      var groupLegend = d3.select("#"+htmlIdPrefix+"mapSimplegroupLegend");
-      groupLegend.attr("transform", "translate(0,-260)");
-
-      // si la légende automatique est affichée on ne connait pas la taille de la légende donc masque le titre
-      if (legendAuto =="0") {
-        var textGroupLegend = d3.select("#"+htmlIdPrefix+"mapSimplegroupLegend")
-        .append("text")
-        .attr("id", "mapSimpletextGroupLegend")
-        .attr("transform", "translate(20,270)")
-        .text(legendTitle+" "+valueUnit) // version traduite: l['tarifTotalCts']
-      }
-
-     var ls_w = 20, ls_h = 20;
-
-     // ajoute des rectangles dans tous les éléments g.legend représentés par la variable "legend".
-     legend.append("rect")
-     .attr("x", 20)
-     .attr("y", function(d, i){ return mapHeight - (i*ls_h) - 2*ls_h;})
-     .attr("width", ls_w)
-     .attr("height", ls_h)
-     .style("fill", function(d, i) { return getMapColorLegend(d); })  // retourne la couleur qui a été associée à la valeur fournie selon le générateur représenté par "getMapColor"
-     .style("opacity", 0.9);
-
-     // Ajoute des éléments textes svg avec les valeurs définies plus haut dans le tableau legend_labels
-     legend.append("text")
-     .attr("x", 50)
-     .attr("y", function(d, i){ return mapHeight - (i*ls_h) - ls_h - 4;})
-     .text(function(d, i){ return legendLabelsLegend[i]; });  // old legend_labels
-
-  } // showLegend
-
-
-
-  /**
-  * Masque l'infobulle
-  *
-  * Cette fonction est appelleé au mouseout.
-  * @return
-  * @param objt aMunicipality l'élément courant des "data"
-  */
-  function hideTooltip(aMunicipality) {
-    tooltip.transition().duration(300)
-    .style("opacity", 0);
-  }
-
-  /**
-  * Fonction qui masque l'image de loading
-  */
-  function hideLoading() {
-
-    var loadingImage = d3.select("#"+htmlIdPrefix+"mapSimpleLoading");
-    loadingImage.style("display", "none");
-  }
-
-
-  /**
-  *  Gère le zoom/pan libre de la carte
-  */
-  function zoomed() {
-    groupCarto.style("stroke-width", 1 / d3.event.scale + "px");
-    groupCarto.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
-  }
 
 
 })();  // fin isolation
