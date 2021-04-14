@@ -64,6 +64,32 @@
     .attr("stroke", "orange")
     .attr("stroke-width", "20")
 
+    hideAllSegment(); // cache tous les segments car ils ont la classe "segment"
+    showAllSegment();
+
+/**
+* Fonction qui supprime l'affichage de tous les segments.
+*
+* @return
+*/
+function hideAllSegment() {
+  var svgStructure = d3.select("#structure");
+
+  svgStructure.selectAll(".segment")
+    .style("display", "none");
+}
+
+/**
+* Fonction qui supprime l'affichage de tous les segments.
+*
+* @return
+*/
+function showAllSegment() {
+  var svgStructure = d3.select("#structure");
+
+  svgStructure.selectAll(".segment")
+    .style("display", "inline");
+}
 
 
   /**
