@@ -11,9 +11,9 @@ a{
 }
 
 #page{
-  /* display:flex;
+  display:flex;
   flex-wrap: wrap;
-  justify-content:space-around; // space-between est pas mal aussi */
+  justify-content:space-around; // space-between est pas mal aussi
 }
 
 svg{
