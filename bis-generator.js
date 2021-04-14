@@ -65,7 +65,9 @@
     .attr("stroke-width", "20")
 
     hideAllSegment(); // cache tous les segments car ils ont la classe "segment"
-    showAllSegment();
+    //showAllSegment();
+
+    showMarkFromCode("vc");
 
 /**
 * Fonction qui supprime l'affichage de tous les segments.
@@ -91,6 +93,52 @@ function showAllSegment() {
     .style("display", "inline");
 }
 
+/**
+* Fonction qui affiche les segments qui correspondent à un code fourni.
+*
+* @param code  → string → UN seul code 2 lettres "base"+nombre hexadécimal: ex: ab ou r3
+* @return
+*/
+function showMarkFromCode(code) {
+
+  //console.log(bravo);
+
+  var baseBravo = code.slice(0, 1); // extrait la première lettre d'un code. ex: r3 => r
+  var indiceBravoHexa = code.slice(1, 2); // extrait le seconde caractère du code. C'est un nombre hexadécimal. 0-f
+
+  console.log("indiceBravoHexa:");
+  console.log(indiceBravoHexa);
+
+  // transformation du code hexa en décimal.
+  var indiceBravo = parseInt(indiceBravoHexa, 16);  // transformation du nombre hexadécimal en décimal. => f => 15
+
+  console.log("base:");
+  console.log(baseBravo);
+
+  console.log("indice:");
+  console.log(indiceBravo);
+
+  // Obtient un tableau contenant la liste des segments. Provenant du tableau bravo.
+  var segmentList = bravo[baseBravo][indiceBravo];
+
+  segmentList.forEach(showSegment); // pour chaque élément de la liste demande l'affichage du segment.
+}
+
+/**
+* Fonction qui affiche les segments qui correspondent à un code fourni.
+*
+* @param idHtmlSegment  → string → l'id du segment (sans le #) => ex: r5
+* @return
+*/
+function showSegment(idHtmlSegment) {
+
+  var svgStructure = d3.select("#structure");
+  var selectedeSegment = svgStructure.select("#"+idHtmlSegment).style("display", "inline");
+
+}
+
+
+// exemples
 
   /**
   * Fonction qui affiche la légende de la carte avec la signification des couleurs.
