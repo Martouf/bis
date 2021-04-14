@@ -67,9 +67,10 @@
     hideAllSegment(); // cache tous les segments car ils ont la classe "segment"
     //showAllSegment();
 
-    var genome = ["va","a3","o2","b5"];
+    //var genome = ["va","a3","o2","b5"];
+    var genome = genomeGenerator(5);
     // showMarkFromCode("vc"); // affiche le(s) segments qui correspondent à un code.
-    showMarkFromGenome(genome); // le génome est une tableau de code. ex: ["va","a3","o2","b5"]
+    showMarkFromGenome(genome); // le génome est un tableau de code. ex: ["va","a3","o2","b5"]
 
   /**
   * Fonction qui supprime l'affichage de tous les segments.
@@ -77,11 +78,27 @@
   * @param numberOfCode → int longueur du génome en nombre de code
   * @return genome  → tableau → une liste de code qui est le génome complet d'une marque de famille.  ex: ["va","a3","o2","b5"]
   */
-  function genomeGenerator() {
-    var svgStructure = d3.select("#structure");
+  function genomeGenerator(numberOfCode) {
 
-    svgStructure.selectAll(".segment")
-      .style("display", "none");
+    // le tableau du génome
+    var genome = [];
+    // On rempli le tableau avec le nombre de code passés en paramètres
+    for (var i = 0; i < numberOfCode; i++) {
+
+      // génère une des 5 base "bravo".
+      var lettreBravo = "bravo";
+      var randomNumber = Math.floor(Math.random() * 4);  // génère un nombre aléatoire entre 0 et 4 => BRAVO
+      var randomBase = lettreBravo.slice(randomNumber, randomNumber+1);
+
+      // génère un indice hexadécimal
+      var randomNumber = Math.floor(Math.random() * 16);  // génère un nombre aléatoire entre 0 et 15
+      var hexRandomNumber = randomNumber.toString(16); // codage du nombre en un seul caractère hexadécimal.
+
+      var code = (randomBase+hexRandomNumber).toString();
+      genome.push(code);
+    }
+
+    return genome;
   }
 
 
