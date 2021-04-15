@@ -83,7 +83,7 @@
 
     });
 
-    // au changement de du slider regénère une markque de famille
+    // au changement du slider regénère une markque de famille
     d3.select("#"+htmlIdPrefix+"numberOfCode").on("change", function() {
       hideAllSegment();
 
@@ -94,6 +94,11 @@
       // showMarkFromCode("vc"); // affiche le(s) segments qui correspondent à un code.
       showMarkFromGenome(genome); // le génome est un tableau de code. ex: ["va","a3","o2","b5"]
 
+    });
+
+    // au clic du bouton d'impression... imprime
+    d3.select("#"+htmlIdPrefix+"printButton").on("click", function() {
+      window.print();
     });
 
 
