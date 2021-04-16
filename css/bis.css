@@ -20,7 +20,8 @@ svg{
   margin: none;
   border: solid 1px white;
 }
-#structure{
+#parchemin{
   background-image: url('../img/fond-parchemin.jpg');
-
+  background-repeat: no-repeat;
+  background-size: contain;
 }
