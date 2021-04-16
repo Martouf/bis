@@ -20,3 +20,7 @@ svg{
   margin: none;
   border: solid 1px white;
 }
+#structure{
+  background-image: url('../img/fond-parchemin.jpg');
+
+}
