@@ -66,7 +66,7 @@
 
     });
 
-    // au changement du slider regénère une markque de famille
+    // au changement du slider regénère une marque de famille
     d3.select("#"+htmlIdPrefix+"numberOfCode").on("change", function() {
       hideAllSegment();
 
@@ -163,6 +163,34 @@
       // <line id="r2" class="segment" x1="1000" y1="1000" x2="500" y2="500" stroke="red" stroke-width="20" />
       // <line id="r3" class="segment" x1="0" y1="1000" x2="500" y2="500" stroke="red" stroke-width="20" />
 
+      groupRed.append("line")
+        .attr("id", markIdPrefix+"r0").attr("class", "segment")
+        .attr("x1", origine).attr("y1", origine)
+        .attr("x2", midWidth).attr("y2", midHeight)
+        .attr("stroke", redColor)
+        .attr("stroke-width", strokeWidth);
+
+      groupRed.append("line")
+        .attr("id", markIdPrefix+"r1").attr("class", "segment")
+        .attr("x1", markWidth).attr("y1", origine)
+        .attr("x2", midWidth).attr("y2", midHeight)
+        .attr("stroke", redColor)
+        .attr("stroke-width", strokeWidth);
+
+      groupRed.append("line")
+        .attr("id", markIdPrefix+"r1").attr("class", "segment")
+        .attr("x1", markWidth).attr("y1", markHeight)
+        .attr("x2", midWidth).attr("y2", midHeight)
+        .attr("stroke", redColor)
+        .attr("stroke-width", strokeWidth);
+
+      groupRed.append("line")
+        .attr("id", markIdPrefix+"r1").attr("class", "segment")
+        .attr("x1", origine).attr("y1", markHeight)
+        .attr("x2", midWidth).attr("y2", midHeight)
+        .attr("stroke", redColor)
+        .attr("stroke-width", strokeWidth);
+
       // Segments du groupe anthracite
       // <rect id="a0" class="segment" x="220" y="0" width="60" height="60" fill="#555" />
       // <rect id="a1" class="segment" x="720" y="0" width="60" height="60" fill="#555" />
@@ -194,11 +222,95 @@
       // <line id="v5" class="segment" x1="500" y1="1000" x2="0" y2="1000" stroke="violet" stroke-width="20" />
       // <line id="v6" class="segment" x1="0" y1="1000" x2="0" y2="500" stroke="violet" stroke-width="20" />
       // <line id="v7" class="segment" x1="0" y1="500" x2="0" y2="0" stroke="violet" stroke-width="20" />
-      //
+
+      groupViolet.append("line")
+        .attr("id", markIdPrefix+"v0").attr("class", "segment")
+        .attr("x1", origine).attr("y1", origine)
+        .attr("x2", midWidth).attr("y2", origine)
+        .attr("stroke", violetColor)
+        .attr("stroke-width", strokeWidth);
+
+      groupViolet.append("line")
+        .attr("id", markIdPrefix+"v1").attr("class", "segment")
+        .attr("x1", midWidth).attr("y1", origine)
+        .attr("x2", markWidth).attr("y2", origine)
+        .attr("stroke", violetColor)
+        .attr("stroke-width", strokeWidth);
+
+      groupViolet.append("line")
+        .attr("id", markIdPrefix+"v2").attr("class", "segment")
+        .attr("x1", markWidth).attr("y1", origine)
+        .attr("x2", markWidth).attr("y2", midHeight)
+        .attr("stroke", violetColor)
+        .attr("stroke-width", strokeWidth);
+
+      groupViolet.append("line")
+        .attr("id", markIdPrefix+"v3").attr("class", "segment")
+        .attr("x1", markWidth).attr("y1", midWidth)
+        .attr("x2", markWidth).attr("y2", markHeight)
+        .attr("stroke", violetColor)
+        .attr("stroke-width", strokeWidth);
+
+      groupViolet.append("line")
+        .attr("id", markIdPrefix+"v4").attr("class", "segment")
+        .attr("x1", markWidth).attr("y1", markHeight)
+        .attr("x2", midWidth).attr("y2", markHeight)
+        .attr("stroke", violetColor)
+        .attr("stroke-width", strokeWidth);
+
+      groupViolet.append("line")
+        .attr("id", markIdPrefix+"v5").attr("class", "segment")
+        .attr("x1", midWidth).attr("y1", markHeight)
+        .attr("x2", origine).attr("y2", markHeight)
+        .attr("stroke", violetColor)
+        .attr("stroke-width", strokeWidth);
+
+      groupViolet.append("line")
+        .attr("id", markIdPrefix+"v6").attr("class", "segment")
+        .attr("x1", origine).attr("y1", markHeight)
+        .attr("x2", origine).attr("y2", midHeight)
+        .attr("stroke", violetColor)
+        .attr("stroke-width", strokeWidth);
+
+      groupViolet.append("line")
+        .attr("id", markIdPrefix+"v7").attr("class", "segment")
+        .attr("x1", origine).attr("y1", midHeight)
+        .attr("x2", origine).attr("y2", origine)
+        .attr("stroke", violetColor)
+        .attr("stroke-width", strokeWidth);
+
       // <line id="v8" class="segment" x1="500" y1="0" x2="500" y2="500" stroke="violet" stroke-width="20" />
       // <line id="v9" class="segment" x1="1000" y1="500" x2="500" y2="500" stroke="violet" stroke-width="20" />
       // <line id="va" class="segment" x1="500" y1="1000" x2="500" y2="500" stroke="violet" stroke-width="20" />
       // <line id="vb" class="segment" x1="0" y1="500" x2="500" y2="500" stroke="violet" stroke-width="20" />
+
+      groupViolet.append("line")
+        .attr("id", markIdPrefix+"v8").attr("class", "segment")
+        .attr("x1", midWidth).attr("y1", origine)
+        .attr("x2", midWidth).attr("y2", midHeight)
+        .attr("stroke", violetColor)
+        .attr("stroke-width", strokeWidth);
+
+      groupViolet.append("line")
+        .attr("id", markIdPrefix+"v9").attr("class", "segment")
+        .attr("x1", markWidth).attr("y1", midHeight)
+        .attr("x2", midWidth).attr("y2", midHeight)
+        .attr("stroke", violetColor)
+        .attr("stroke-width", strokeWidth);
+
+      groupViolet.append("line")
+        .attr("id", markIdPrefix+"va").attr("class", "segment")
+        .attr("x1", midWidth).attr("y1", markHeight)
+        .attr("x2", midWidth).attr("y2", midHeight)
+        .attr("stroke", violetColor)
+        .attr("stroke-width", strokeWidth);
+
+      groupViolet.append("line")
+        .attr("id", markIdPrefix+"vb").attr("class", "segment")
+        .attr("x1", origine).attr("y1", midHeight)
+        .attr("x2", midWidth).attr("y2", midHeight)
+        .attr("stroke", violetColor)
+        .attr("stroke-width", strokeWidth);
 
       // Segment du groupe Orange,
       // <line id="o0" class="segment" x1="0" y1="0" x2="250" y2="500" stroke="orange" stroke-width="20" />
