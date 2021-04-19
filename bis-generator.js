@@ -223,24 +223,121 @@
       // Segments du groupe anthracite
       // <rect id="a0" class="segment" x="220" y="0" width="60" height="60" fill="#555" />
       // <rect id="a1" class="segment" x="720" y="0" width="60" height="60" fill="#555" />
-      //
+
+      groupAnthracite.append("rect")
+        .attr("id", markIdPrefix+"a0").attr("class", "segment")
+        .attr("x", (quartWidth-anthraciteBlockWidth/2)).attr("y", origine)
+        .attr("width", anthraciteBlockWidth).attr("height", anthraciteBlockWidth)
+        .attr("fill", anthraciteColor);
+
+      groupAnthracite.append("rect")
+        .attr("id", markIdPrefix+"a1").attr("class", "segment")
+        .attr("x", (treeQuartWidth-anthraciteBlockWidth/2)).attr("y", origine)
+        .attr("width", anthraciteBlockWidth).attr("height", anthraciteBlockWidth)
+        .attr("fill", anthraciteColor);
+
       // <rect id="a2" class="segment" x="0" y="220" width="60" height="60" fill="#555" />
       // <rect id="a3" class="segment" x="220" y="220" width="60" height="60" fill="#555" />
       // <rect id="a4" class="segment" x="470" y="220" width="60" height="60" fill="#555" />
       // <rect id="a5" class="segment" x="720" y="220" width="60" height="60" fill="#555" />
       // <rect id="a6" class="segment" x="940" y="220" width="60" height="60" fill="#555" />
-      //
+
+      groupAnthracite.append("rect")
+        .attr("id", markIdPrefix+"a2").attr("class", "segment")
+        .attr("x", origine).attr("y", (quartHeight-anthraciteBlockWidth/2))
+        .attr("width", anthraciteBlockWidth).attr("height", anthraciteBlockWidth)
+        .attr("fill", anthraciteColor);
+
+      groupAnthracite.append("rect")
+        .attr("id", markIdPrefix+"a3").attr("class", "segment")
+        .attr("x", (quartWidth-anthraciteBlockWidth/2)).attr("y", (quartHeight-anthraciteBlockWidth/2))
+        .attr("width", anthraciteBlockWidth).attr("height", anthraciteBlockWidth)
+        .attr("fill", anthraciteColor);
+
+      groupAnthracite.append("rect")
+        .attr("id", markIdPrefix+"a4").attr("class", "segment")
+        .attr("x", (midWidth-anthraciteBlockWidth/2)).attr("y", (quartHeight-anthraciteBlockWidth/2))
+        .attr("width", anthraciteBlockWidth).attr("height", anthraciteBlockWidth)
+        .attr("fill", anthraciteColor);
+
+      groupAnthracite.append("rect")
+        .attr("id", markIdPrefix+"a5").attr("class", "segment")
+        .attr("x", (treeQuartWidth-anthraciteBlockWidth/2)).attr("y", (quartHeight-anthraciteBlockWidth/2))
+        .attr("width", anthraciteBlockWidth).attr("height", anthraciteBlockWidth)
+        .attr("fill", anthraciteColor);
+
+      groupAnthracite.append("rect")
+        .attr("id", markIdPrefix+"a6").attr("class", "segment")
+        .attr("x", (markWidth-anthraciteBlockWidth)).attr("y", (quartHeight-anthraciteBlockWidth/2))
+        .attr("width", anthraciteBlockWidth).attr("height", anthraciteBlockWidth)
+        .attr("fill", anthraciteColor);
+
+
       // <rect id="a7" class="segment" x="220" y="470" width="60" height="60" fill="#555" />
       // <rect id="a8" class="segment" x="720" y="470" width="60" height="60" fill="#555" />
-      //
+
+      groupAnthracite.append("rect")
+        .attr("id", markIdPrefix+"a7").attr("class", "segment")
+        .attr("x", (quartWidth-anthraciteBlockWidth/2)).attr("y", (midHeight-anthraciteBlockWidth/2))
+        .attr("width", anthraciteBlockWidth).attr("height", anthraciteBlockWidth)
+        .attr("fill", anthraciteColor);
+
+      groupAnthracite.append("rect")
+        .attr("id", markIdPrefix+"a8").attr("class", "segment")
+        .attr("x", (treeQuartWidth-anthraciteBlockWidth/2)).attr("y", (midHeight-anthraciteBlockWidth/2))
+        .attr("width", anthraciteBlockWidth).attr("height", anthraciteBlockWidth)
+        .attr("fill", anthraciteColor);
+
       // <rect id="a9" class="segment" x="0" y="720" width="60" height="60" fill="#555" />
       // <rect id="aa" class="segment" x="220" y="720" width="60" height="60" fill="#555" />
       // <rect id="ab" class="segment" x="470" y="720" width="60" height="60" fill="#555" />
       // <rect id="ac" class="segment" x="720" y="720" width="60" height="60" fill="#555" />
       // <rect id="ad" class="segment" x="940" y="720" width="60" height="60" fill="#555" />
-      //
-      // <rect id="aa" class="segment" x="220" y="940" width="60" height="60" fill="#555" />
-      // <rect id="aa" class="segment" x="720" y="940" width="60" height="60" fill="#555" />
+
+      groupAnthracite.append("rect")
+        .attr("id", markIdPrefix+"a9").attr("class", "segment")
+        .attr("x", origine).attr("y", (treeQuartHeight-anthraciteBlockWidth/2))
+        .attr("width", anthraciteBlockWidth).attr("height", anthraciteBlockWidth)
+        .attr("fill", anthraciteColor);
+
+      groupAnthracite.append("rect")
+        .attr("id", markIdPrefix+"aa").attr("class", "segment")
+        .attr("x", (quartWidth-anthraciteBlockWidth/2)).attr("y", (treeQuartHeight-anthraciteBlockWidth/2))
+        .attr("width", anthraciteBlockWidth).attr("height", anthraciteBlockWidth)
+        .attr("fill", anthraciteColor);
+
+      groupAnthracite.append("rect")
+        .attr("id", markIdPrefix+"ab").attr("class", "segment")
+        .attr("x", (midWidth-anthraciteBlockWidth/2)).attr("y", (treeQuartHeight-anthraciteBlockWidth/2))
+        .attr("width", anthraciteBlockWidth).attr("height", anthraciteBlockWidth)
+        .attr("fill", anthraciteColor);
+
+      groupAnthracite.append("rect")
+        .attr("id", markIdPrefix+"ac").attr("class", "segment")
+        .attr("x", (treeQuartWidth-anthraciteBlockWidth/2)).attr("y", (treeQuartHeight-anthraciteBlockWidth/2))
+        .attr("width", anthraciteBlockWidth).attr("height", anthraciteBlockWidth)
+        .attr("fill", anthraciteColor);
+
+      groupAnthracite.append("rect")
+        .attr("id", markIdPrefix+"ad").attr("class", "segment")
+        .attr("x", (markWidth-anthraciteBlockWidth)).attr("y", (treeQuartHeight-anthraciteBlockWidth/2))
+        .attr("width", anthraciteBlockWidth).attr("height", anthraciteBlockWidth)
+        .attr("fill", anthraciteColor);
+
+      // <rect id="ae" class="segment" x="220" y="940" width="60" height="60" fill="#555" />
+      // <rect id="af" class="segment" x="720" y="940" width="60" height="60" fill="#555" />
+
+      groupAnthracite.append("rect")
+        .attr("id", markIdPrefix+"ae").attr("class", "segment")
+        .attr("x", (quartWidth-anthraciteBlockWidth/2)).attr("y", (markHeight-anthraciteBlockWidth))
+        .attr("width", anthraciteBlockWidth).attr("height", anthraciteBlockWidth)
+        .attr("fill", anthraciteColor);
+
+      groupAnthracite.append("rect")
+        .attr("id", markIdPrefix+"af").attr("class", "segment")
+        .attr("x", (treeQuartWidth-anthraciteBlockWidth/2)).attr("y", (markHeight-anthraciteBlockWidth))
+        .attr("width", anthraciteBlockWidth).attr("height", anthraciteBlockWidth)
+        .attr("fill", anthraciteColor);
 
       // Segments du groupe Violet
       // <line id="v0" class="segment" x1="0" y1="0" x2="500" y2="0" stroke="violet" stroke-width="20" />
