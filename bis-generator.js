@@ -24,9 +24,12 @@
   var dateTime = Date.now();
   var dateTimeSlug = Math.floor(dateTime / 1000); // en seconde et pas millisecondes.
 
+  var windowWidth = 1180; // taille par défaut si non existant // l'ipad air devrait avoir une résolution réelle de 1180X820 (+ le facteur 2 retina)
+  var windowWidth = (document.body.clientWidth);
+
   // valeur par défaut du viewport => desktop
-  var markWidth = 1000;
-  var markHeight = 1000;
+  var markWidth = 500;
+  var markHeight = 500;
 
   /////////// Initiatilsation  ////////////
 
@@ -46,27 +49,6 @@
 
   // la taille du contenu = 946px  => 3/4 = 710
   // mapWidth =  .75 * windowWidth; // règle la taille du viewport à 75% de la taille de la fenêtre
-
-//   var svgMark = rightColumn
-//       .append("svg")
-//       .attr("id", "svgZone")
-//       .attr("width", markWidth)
-//       .attr("height", markHeight)
-//       .attr("transform", "scale(0.5)");
-//
-//   var groupOrange = svgMark.append("g").attr("id", "groupOrange"); // création d'un layer svg pour les segment du groupe orange.
-//
-//
-// // <line id="o0" class="segment" x1="0" y1="0" x2="250" y2="500" stroke="orange" stroke-width="20" />
-//   groupOrange.append("line")
-//     .attr("id", "o0")
-//     .attr("class", "segment")
-//     .attr("x1", "0")
-//     .attr("y1", "0")
-//     .attr("x2", "250")
-//     .attr("y2", "500")
-//     .attr("stroke", "orange")
-//     .attr("stroke-width", "20")
 
 
     // lancement app
@@ -110,6 +92,35 @@
     var genome = genomeGenerator(numberOfCode);
     // showMarkFromCode("vc"); // affiche le(s) segments qui correspondent à un code.
     showMarkFromGenome(genome); // le génome est un tableau de code. ex: ["va","a3","o2","b5"]
+
+
+    /**
+    * Fonction qui affiche tous les segments.
+    * Nécessite un ancrage sur le div rightColumn
+    *
+    * @param width → int largeur en px
+    * @return
+    */
+    function showBaseStructure(width) {
+
+        var svgMark = rightColumn
+            .append("svg")
+            .attr("id", "svgZone")
+            .attr("width", markWidth)
+            .attr("height", markHeight)
+            .attr("transform", "scale(0.5)");
+
+        var groupOrange = svgMark.append("g").attr("id", "groupOrange"); // création d'un layer svg pour les segment du groupe orange.
+
+
+      // <line id="o0" class="segment" x1="0" y1="0" x2="250" y2="500" stroke="orange" stroke-width="20" />
+        groupOrange.append("line")
+          .attr("id", "o0").attr("class", "segment")
+          .attr("x1", "0").attr("y1", "0")
+          .attr("x2", "250").attr("y2", "500")
+          .attr("stroke", "orange")
+          .attr("stroke-width", "20")
+    }
 
   /**
   * Fonction qui supprime l'affichage de tous les segments.
