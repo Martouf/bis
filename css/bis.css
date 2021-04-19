@@ -9,6 +9,9 @@ a{
   text-decoration: none;
   color: #666;
 }
+h1 {
+  text-align: center;
+}
 
 /* #page{
   display:flex;
@@ -18,11 +21,84 @@ a{
 
 svg{
   margin: 0px;
-  border: solid 1px #888;
+  /* border: solid 1px #888; */
 }
 #parchemin{
-  padding: 25px;
+  margin: auto;
+  width: 1000px;
+  padding: 35px;
   background-image: url('../img/fond-parchemin.jpg');
   background-repeat: no-repeat;
   background-size: contain;
+}
+#appControler{
+  margin: auto;
+  width: 80%;
+  padding-top: 30px;
+  font-size: 1.5em;
+
+  display:flex;
+  flex-wrap: wrap;
+  justify-content:space-around;
+}
+
+#appSliders{
+  display:flex;
+  flex-wrap: wrap;
+  justify-content:space-around;
+}
+
+.button {
+  background-color: #555;
+  border: 2px solid #white;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 8px;
+  margin: 10px;
+  transition-duration: 0.4s;
+}
+.button:hover {
+  background-color: white;
+  color: black;
+}
+
+.slidecontainer{
+    border: solid 1px white;
+    border-radius: 15px;
+    margin: 10px;
+    padding: 20px;
+}
+
+.slider{
+  -webkit-appearance: none;
+  height: 15px;
+  margin-top: 20px;
+  border-radius: 5px;
+  background: #fff;
+  outline: none;
+  display: inline;
+}
+
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #f44336;
+  cursor: pointer;
+  border: solid 1px white;
+}
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #f44336;
+  cursor: pointer;
+  border: solid 1px white;
 }

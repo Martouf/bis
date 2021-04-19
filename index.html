@@ -36,17 +36,28 @@
 
       <div id="appControler">
 
+        <div id="appSliders">
+          <div class="slidecontainer">
+            <label for="numberOfCode">Complexité</label><br />
+            -<input type="range" min="1" max="20" value="4" class="slider" id="numberOfCode">+
+          </div>
 
-        <div class="slidecontainer">
-          <label for="numberOfCode">Complexité</label><br />
-          -<input type="range" min="1" max="20" value="4" class="slider" id="numberOfCode">+
+          <div class="slidecontainer">
+            <label for="communiste">Communiste</label><input type="range" min="1" max="20" value="10" class="slider" id="communiste"><label>Capitaliste</label>
+          </div>
         </div>
 
-        <input type="submit" id="regenerateButton" name="regenerateButton" value="Générer une marque">
+        <div id="appButton">
+          <div class="blockButton">
+            <input class ="button" type="submit" id="regenerateButton" name="regenerateButton" value="Générer une marque">
+          </div>
 
-        <p>
-          <input type="submit" id="printButton" name="printButton" value="Imprimer">
-        </p>
+          <div class="blockButton">
+            <input class="button" type="submit" id="printButton" name="printButton" value="Imprimer">
+          </div>
+        </div>
+
+
       </div>
 
 	 </div>
