@@ -19,6 +19,7 @@
   var cursorCorrectionMap = 0;
   var cursorCorrectionMapTop = 0; // 290
   var htmlIdPrefix = ""; // permet d'ajouter un prefix pour distinguer input html d'autres instances de la même app dans la même page.
+  var markIdPrefix = ""; // permet de distinguer des marque dans la même page.
 
   // Pour avoir un paramètre unique à mettre dans l'url de téléchargements des data, afin d'éviter le cache.
   var dateTime = Date.now();
@@ -93,7 +94,7 @@
     // showMarkFromCode("vc"); // affiche le(s) segments qui correspondent à un code.
     showMarkFromGenome(genome); // le génome est un tableau de code. ex: ["va","a3","o2","b5"]
 
-    //showBaseStructure(markDefautlWidth);
+    showBaseStructure(markDefautlWidth,"");
 
     /**
     * Fonction qui affiche tous les segments.
@@ -101,12 +102,32 @@
     * On part du principe que la marque est un carré donc seule la largeur est prise en compte et la longueur est égale.
     *
     * @param markWidth → int largeur en px
+    * @param markIdPrefix → strng un prefix qui permet de distinguer une marque d'une autre si elles sont affichées sur la même page.
     * @return
     */
-    function showBaseStructure(markWidth) {
+    function showBaseStructure(markWidth,markIdPrefix) {
+
+      // l'origine des coordonnées est en haut à gauche.
+      // Déplacement horizontal sur la droite = augmentation de l'axe des x
+      // Déplacement vertical sur le bas = augmentation de l'axe des y
 
       // la marque est un carré, donc on déduit la hauteur de la largeur
       var markHeight = markWidth;
+
+      // mise en variable de valeurs utile surs la grille
+      var origine = 0;
+      var midWidth = markWidth/2;  // moitié de la largeur
+      var midHeight = markHeight/2;  // moitié de la hauteur
+
+      var quartWidth = markWidth/4;  // quart de la largeur
+      var quartHeight = markHeight/4;  // quart de la hauteur
+
+      var treeQuartWidth = 3*markWidth/4;  // 3/4 da la largeur
+      var treeQuartHeight = 3*markHeight/4;  // 3/4 de la hauteur
+
+      var anthraciteBlockWidth = 60; // largeur d'un bloc anthracite
+
+      var strokeWidth = 20; // épaisseur d'un trait
 
       // crée une zone svg ave une taille précise et un niveau de zoom. (il reste des marges autour du svg si on zoom)
       var svgMark = rightColumn
@@ -117,11 +138,18 @@
           .attr("transform", "scale(.5)");
 
       // chaque base BRAVO a son groupe de segement ça nous permettra de les moduler.
-      var groupBlue = svgMark.append("g").attr("id", "groupBlue"); // création d'un layer svg pour les segment du groupe bleu.
-      var groupRed = svgMark.append("g").attr("id", "groupRed");
-      var groupAnthracite = svgMark.append("g").attr("id", "groupAnthracite");
-      var groupViolet = svgMark.append("g").attr("id", "groupViolet");
-      var groupOrange = svgMark.append("g").attr("id", "groupOrange");
+      var groupBlue = svgMark.append("g").attr("id", markIdPrefix+"groupBlue"); // création d'un layer svg pour les segment du groupe bleu.
+      var groupRed = svgMark.append("g").attr("id", markIdPrefix+"groupRed");
+      var groupAnthracite = svgMark.append("g").attr("id", markIdPrefix+"groupAnthracite");
+      var groupViolet = svgMark.append("g").attr("id", markIdPrefix+"groupViolet");
+      var groupOrange = svgMark.append("g").attr("id", markIdPrefix+"groupOrange");
+
+      // couleur par défaut des groupe. Vu que l'impression est seulement monochrome, on ne va pas les utiliser. Mais pour le debug c'est bien.
+      var blueColor = "blue";
+      var redColor = "red";
+      var anthraciteColor = "#555";
+      var violetColor = "violet";
+      var orangeColor = "orange";
 
       // Segments du groupe Bleu
       // <polyline id="b0" class="segment" points="500 0, 550 0, 500 100, 450 0, 500 0" stroke="blue" stroke-width="20" fill="blue" />
@@ -183,11 +211,60 @@
       // <line id="o6" class="segment" x1="750" y1="500" x2="1000" y2="1000" stroke="orange" stroke-width="20" />
       // <line id="o7" class="segment" x1="750" y1="500" x2="500" y2="1000" stroke="orange" stroke-width="20" />
       groupOrange.append("line")
-        .attr("id", "o0").attr("class", "segment")
-        .attr("x1", "0").attr("y1", "0")
-        .attr("x2", "250").attr("y2", "500")
-        .attr("stroke", "orange")
-        .attr("stroke-width", "20")
+        .attr("id", markIdPrefix+"o0").attr("class", "segment")
+        .attr("x1", origine).attr("y1", origine)
+        .attr("x2", quartWidth).attr("y2", midHeight)
+        .attr("stroke", orangeColor)
+        .attr("stroke-width", strokeWidth);
+
+      groupOrange.append("line")
+        .attr("id", markIdPrefix+"o1").attr("class", "segment")
+        .attr("x1", quartWidth).attr("y1", midHeight)
+        .attr("x2", midWidth).attr("y2", origine)
+        .attr("stroke", orangeColor)
+        .attr("stroke-width", strokeWidth);
+
+      groupOrange.append("line")
+        .attr("id", markIdPrefix+"o2").attr("class", "segment")
+        .attr("x1", quartWidth).attr("y1", midHeight)
+        .attr("x2", midWidth).attr("y2", markHeight)
+        .attr("stroke", orangeColor)
+        .attr("stroke-width", strokeWidth);
+
+      groupOrange.append("line")
+        .attr("id", markIdPrefix+"o3").attr("class", "segment")
+        .attr("x1", quartWidth).attr("y1", midHeight)
+        .attr("x2", origine).attr("y2", markHeight)
+        .attr("stroke", orangeColor)
+        .attr("stroke-width", strokeWidth);
+
+      groupOrange.append("line")
+        .attr("id", markIdPrefix+"o4").attr("class", "segment")
+        .attr("x1", midWidth).attr("y1", origine)
+        .attr("x2", treeQuartWidth).attr("y2", midHeight)
+        .attr("stroke", orangeColor)
+        .attr("stroke-width", strokeWidth);
+
+      groupOrange.append("line")
+        .attr("id", markIdPrefix+"o5").attr("class", "segment")
+        .attr("x1", treeQuartWidth).attr("y1", midHeight)
+        .attr("x2", markWidth).attr("y2", origine)
+        .attr("stroke", orangeColor)
+        .attr("stroke-width", strokeWidth);
+
+      groupOrange.append("line")
+        .attr("id", markIdPrefix+"o6").attr("class", "segment")
+        .attr("x1", treeQuartWidth).attr("y1", midHeight)
+        .attr("x2", markWidth).attr("y2", markHeight)
+        .attr("stroke", orangeColor)
+        .attr("stroke-width", strokeWidth);
+
+      groupOrange.append("line")
+        .attr("id", markIdPrefix+"o7").attr("class", "segment")
+        .attr("x1", treeQuartWidth).attr("y1", midHeight)
+        .attr("x2", midWidth).attr("y2", markHeight)
+        .attr("stroke", orangeColor)
+        .attr("stroke-width", strokeWidth);
 
 
     }
