@@ -10,17 +10,18 @@ a{
   color: #666;
 }
 
-#page{
+/* #page{
   display:flex;
   flex-wrap: wrap;
   justify-content:space-around; // space-between est pas mal aussi
-}
+} */
 
 svg{
-  margin: none;
-  border: solid 1px white;
+  margin: 0px;
+  border: solid 1px #888;
 }
 #parchemin{
+  padding: 25px;
   background-image: url('../img/fond-parchemin.jpg');
   background-repeat: no-repeat;
   background-size: contain;

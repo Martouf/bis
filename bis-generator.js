@@ -28,9 +28,9 @@
   var windowWidth = 1180; // taille par défaut si non existant // l'ipad air devrait avoir une résolution réelle de 1180X820 (+ le facteur 2 retina)
   var windowWidth = (document.body.clientWidth);
 
-  // valeur par défaut du viewport => desktop
+  // valeur par défaut du viewport svg
+  // comme la marque de famille est carrée, on indique que la largeur. On en déduit la hauteur
   var markDefautlWidth = 500;
-  var markDefaultHeight = 500;
 
   /////////// Initiatilsation  ////////////
 
@@ -42,70 +42,66 @@
   // Variable qui représente l'élément body sur lequel on se croche pour générer le contenu via d3.js
   var htmlBody = d3.select("#"+htmlIdPrefix+"zone");
 
-  // crée un div dans le DOM qui est un espace pour une colonne de droite
-    var rightColumn = htmlBody
-        .append("div")
-        .attr("id", "familyMark");
-
 
   // la taille du contenu = 946px  => 3/4 = 710
   // mapWidth =  .75 * windowWidth; // règle la taille du viewport à 75% de la taille de la fenêtre
 
 
-    // lancement app
+  // lancement app
 
-    // au clic du bouton, regénère une marque de famille
-    d3.select("#"+htmlIdPrefix+"regenerateButton").on("click", function() {
-      hideAllSegment();
+  // au clic du bouton, regénère une marque de famille
+  d3.select("#"+htmlIdPrefix+"regenerateButton").on("click", function() {
+    hideAllSegment();
 
-      var numberOfCode = d3.select("#"+htmlIdPrefix+"numberOfCode").node().value;
+    var numberOfCode = d3.select("#"+htmlIdPrefix+"numberOfCode").node().value;
 
-      var genome = genomeGenerator(numberOfCode);
-      // showMarkFromCode("vc"); // affiche le(s) segments qui correspondent à un code.
-      showMarkFromGenome(genome); // le génome est un tableau de code. ex: ["va","a3","o2","b5"]
-
-    });
-
-    // au changement du slider regénère une marque de famille
-    d3.select("#"+htmlIdPrefix+"numberOfCode").on("change", function() {
-      hideAllSegment();
-
-      var numberOfCode = d3.select("#"+htmlIdPrefix+"numberOfCode").node().value;
-      //console.log(numberOfCode);
-
-      var genome = genomeGenerator(numberOfCode);
-      // showMarkFromCode("vc"); // affiche le(s) segments qui correspondent à un code.
-      showMarkFromGenome(genome); // le génome est un tableau de code. ex: ["va","a3","o2","b5"]
-
-    });
-
-    // au clic du bouton d'impression... imprime
-    d3.select("#"+htmlIdPrefix+"printButton").on("click", function() {
-      window.print();
-    });
-
-
-    // initialisation de l'app au démarrage
-    hideAllSegment(); // cache tous les segments car ils ont la classe "segment"
-    //showAllSegment();
-
-    //var genome = ["va","a3","o2","b5"];
     var genome = genomeGenerator(numberOfCode);
     // showMarkFromCode("vc"); // affiche le(s) segments qui correspondent à un code.
     showMarkFromGenome(genome); // le génome est un tableau de code. ex: ["va","a3","o2","b5"]
 
-    showBaseStructure(markDefautlWidth,"");
+  });
+
+  // au changement du slider regénère une marque de famille
+  d3.select("#"+htmlIdPrefix+"numberOfCode").on("change", function() {
+    hideAllSegment();
+
+    var numberOfCode = d3.select("#"+htmlIdPrefix+"numberOfCode").node().value;
+    //console.log(numberOfCode);
+
+    var genome = genomeGenerator(numberOfCode);
+    // showMarkFromCode("vc"); // affiche le(s) segments qui correspondent à un code.
+    showMarkFromGenome(genome); // le génome est un tableau de code. ex: ["va","a3","o2","b5"]
+
+  });
+
+  // au clic du bouton d'impression... imprime
+  d3.select("#"+htmlIdPrefix+"printButton").on("click", function() {
+    window.print();
+  });
+
+
+  // initialisation de l'app au démarrage
+  showBaseStructure(markDefautlWidth,"",1);
+  hideAllSegment(); // cache tous les segments car ils ont la classe "segment"
+  //showAllSegment();
+
+  //var genome = ["va","a3","o2","b5"];
+  var genome = genomeGenerator(numberOfCode);
+  // showMarkFromCode("vc"); // affiche le(s) segments qui correspondent à un code.
+  showMarkFromGenome(genome); // le génome est un tableau de code. ex: ["va","a3","o2","b5"]
+
 
     /**
     * Fonction qui affiche tous les segments.
-    * Nécessite un ancrage sur le div rightColumn
+    * Nécessite un ancrage sur le div htmlBody
     * On part du principe que la marque est un carré donc seule la largeur est prise en compte et la longueur est égale.
     *
     * @param markWidth → int largeur en px
     * @param markIdPrefix → strng un prefix qui permet de distinguer une marque d'une autre si elles sont affichées sur la même page.
+    * @param markScale → float le facteur d'échelle a utiliser: ex: 0.5 taille de moitité
     * @return
     */
-    function showBaseStructure(markWidth,markIdPrefix) {
+    function showBaseStructure(markWidth,markIdPrefix,markScale) {
 
       // l'origine des coordonnées est en haut à gauche.
       // Déplacement horizontal sur la droite = augmentation de l'axe des x
@@ -125,18 +121,18 @@
       var treeQuartWidth = 3*markWidth/4;  // 3/4 da la largeur
       var treeQuartHeight = 3*markHeight/4;  // 3/4 de la hauteur
 
-      var anthraciteBlockWidth = 60; // largeur d'un bloc anthracite
+      var anthraciteBlockWidth = 50; // largeur d'un bloc anthracite
       var blueBlockWidth = 100; // largeur de la base du triangle bleu
 
       var strokeWidth = 20; // épaisseur d'un trait
 
       // crée une zone svg ave une taille précise et un niveau de zoom. (il reste des marges autour du svg si on zoom)
-      var svgMark = rightColumn
+      var svgMark = htmlBody
           .append("svg")
-          .attr("id", "svgZone")
+          .attr("id", "structure")
           .attr("width", markWidth)
           .attr("height", markHeight)
-          .attr("transform", "scale(.5)");
+          .attr("transform", "scale("+markScale+")");
 
       // chaque base BRAVO a son groupe de segement ça nous permettra de les moduler.
       var groupBlue = svgMark.append("g").attr("id", markIdPrefix+"groupBlue"); // création d'un layer svg pour les segment du groupe bleu.
@@ -146,11 +142,17 @@
       var groupOrange = svgMark.append("g").attr("id", markIdPrefix+"groupOrange");
 
       // couleur par défaut des groupe. Vu que l'impression est seulement monochrome, on ne va pas les utiliser. Mais pour le debug c'est bien.
-      var blueColor = "blue";
-      var redColor = "red";
-      var anthraciteColor = "#555";
-      var violetColor = "violet";
-      var orangeColor = "orange";
+      // var blueColor = "blue";
+      // var redColor = "red";
+      // var anthraciteColor = "#555";
+      // var violetColor = "violet";
+      // var orangeColor = "orange";
+
+      var blueColor = "#222";
+      var redColor = "#222";
+      var anthraciteColor = "#222";
+      var violetColor = "#222";
+      var orangeColor = "#222";
 
       // Segments du groupe Bleu
       // <polyline id="b0" class="segment" points="500 0, 550 0, 500 100, 450 0, 500 0" stroke="blue" stroke-width="20" fill="blue" />
@@ -507,34 +509,34 @@
 
     }
 
-  /**
-  * Fonction qui supprime l'affichage de tous les segments.
-  *
-  * @param numberOfCode → int longueur du génome en nombre de code
-  * @return genome  → tableau → une liste de code qui est le génome complet d'une marque de famille.  ex: ["va","a3","o2","b5"]
-  */
-  function genomeGenerator(numberOfCode) {
+/**
+* Fonction qui supprime l'affichage de tous les segments.
+*
+* @param numberOfCode → int longueur du génome en nombre de code
+* @return genome  → tableau → une liste de code qui est le génome complet d'une marque de famille.  ex: ["va","a3","o2","b5"]
+*/
+function genomeGenerator(numberOfCode) {
 
-    // le tableau du génome
-    var genome = [];
-    // On rempli le tableau avec le nombre de code passés en paramètres
-    for (var i = 0; i < numberOfCode; i++) {
+  // le tableau du génome
+  var genome = [];
+  // On rempli le tableau avec le nombre de code passés en paramètres
+  for (var i = 0; i < numberOfCode; i++) {
 
-      // génère une des 5 bases "bravo".
-      var lettreBravo = "bravo";
-      var randomNumber = Math.floor(Math.random() * 5);  // génère un nombre aléatoire entre 0 et 4 => BRAVO
-      var randomBase = lettreBravo.slice(randomNumber, randomNumber+1);
+    // génère une des 5 bases "bravo".
+    var lettreBravo = "bravo";
+    var randomNumber = Math.floor(Math.random() * 5);  // génère un nombre aléatoire entre 0 et 4 => BRAVO
+    var randomBase = lettreBravo.slice(randomNumber, randomNumber+1);
 
-      // génère un indice hexadécimal
-      var randomNumber = Math.floor(Math.random() * 16);  // génère un nombre aléatoire entre 0 et 15
-      var hexRandomNumber = randomNumber.toString(16); // codage du nombre en un seul caractère hexadécimal.
+    // génère un indice hexadécimal
+    var randomNumber = Math.floor(Math.random() * 16);  // génère un nombre aléatoire entre 0 et 15
+    var hexRandomNumber = randomNumber.toString(16); // codage du nombre en un seul caractère hexadécimal.
 
-      var code = (randomBase+hexRandomNumber).toString();
-      genome.push(code);
-    }
-
-    return genome;
+    var code = (randomBase+hexRandomNumber).toString();
+    genome.push(code);
   }
+
+  return genome;
+}
 
 
 /**
