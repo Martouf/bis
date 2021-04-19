@@ -126,6 +126,7 @@
       var treeQuartHeight = 3*markHeight/4;  // 3/4 de la hauteur
 
       var anthraciteBlockWidth = 60; // largeur d'un bloc anthracite
+      var blueBlockWidth = 100; // largeur de la base du triangle bleu
 
       var strokeWidth = 20; // épaisseur d'un trait
 
@@ -156,6 +157,34 @@
       // <polyline id="b1" class="segment" points="1000 500, 1000 550, 900 500, 1000 450, 1000 500" stroke="blue" stroke-width="20" fill="blue" />
       // <polyline id="b2" class="segment" points="500 1000, 450 1000, 500 900, 550 1000, 500 1000" stroke="blue" stroke-width="20" fill="blue" />
       // <polyline id="b3" class="segment" points="0 500, 0 450, 100 500, 0 550, 0 500" stroke="blue" stroke-width="20" fill="blue" />
+
+      groupBlue.append("polyline")
+        .attr("id", markIdPrefix+"b0").attr("class", "segment")
+        .attr("points", midWidth+" "+origine+", "+(midWidth+blueBlockWidth/2)+" "+origine+", "+midWidth+" "+blueBlockWidth+", "+(midWidth-blueBlockWidth/2)+" "+origine+", "+midWidth+" "+origine)
+        .attr("stroke", blueColor)
+        .attr("fill", blueColor)
+        .attr("stroke-width", strokeWidth);
+
+      groupBlue.append("polyline")
+        .attr("id", markIdPrefix+"b1").attr("class", "segment")
+        .attr("points", markWidth+" "+midHeight+", "+markWidth+" "+(midHeight+blueBlockWidth/2)+", "+(markWidth-blueBlockWidth)+" "+midHeight+", "+markWidth+" "+(midHeight-blueBlockWidth/2)+", "+markWidth+" "+midHeight)
+        .attr("stroke", blueColor)
+        .attr("fill", blueColor)
+        .attr("stroke-width", strokeWidth);
+
+      groupBlue.append("polyline")
+        .attr("id", markIdPrefix+"b2").attr("class", "segment")
+        .attr("points", midWidth+" "+markHeight+", "+(midWidth-blueBlockWidth/2)+" "+markHeight+", "+midWidth+" "+(markWidth-blueBlockWidth)+", "+(midWidth+blueBlockWidth/2)+" "+markHeight+", "+midWidth+" "+markHeight)
+        .attr("stroke", blueColor)
+        .attr("fill", blueColor)
+        .attr("stroke-width", strokeWidth);
+
+      groupBlue.append("polyline")
+        .attr("id", markIdPrefix+"b3").attr("class", "segment")
+        .attr("points", origine+" "+midHeight+", "+origine+" "+(midHeight-blueBlockWidth/2)+", "+blueBlockWidth+" "+midHeight+", "+origine+" "+(midHeight+blueBlockWidth/2)+", "+origine+" "+midHeight)
+        .attr("stroke", blueColor)
+        .attr("fill", blueColor)
+        .attr("stroke-width", strokeWidth);
 
       // Segments du groupe Rouge
       // <line id="r0" class="segment" x1="0" y1="0" x2="500" y2="500" stroke="red" stroke-width="20" />
