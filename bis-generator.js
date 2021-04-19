@@ -28,8 +28,8 @@
   var windowWidth = (document.body.clientWidth);
 
   // valeur par défaut du viewport => desktop
-  var markWidth = 500;
-  var markHeight = 500;
+  var markDefautlWidth = 500;
+  var markDefaultHeight = 500;
 
   /////////// Initiatilsation  ////////////
 
@@ -93,33 +93,103 @@
     // showMarkFromCode("vc"); // affiche le(s) segments qui correspondent à un code.
     showMarkFromGenome(genome); // le génome est un tableau de code. ex: ["va","a3","o2","b5"]
 
+    //showBaseStructure(markDefautlWidth);
 
     /**
     * Fonction qui affiche tous les segments.
     * Nécessite un ancrage sur le div rightColumn
+    * On part du principe que la marque est un carré donc seule la largeur est prise en compte et la longueur est égale.
     *
-    * @param width → int largeur en px
+    * @param markWidth → int largeur en px
     * @return
     */
-    function showBaseStructure(width) {
+    function showBaseStructure(markWidth) {
 
-        var svgMark = rightColumn
-            .append("svg")
-            .attr("id", "svgZone")
-            .attr("width", markWidth)
-            .attr("height", markHeight)
-            .attr("transform", "scale(0.5)");
+      // la marque est un carré, donc on déduit la hauteur de la largeur
+      var markHeight = markWidth;
 
-        var groupOrange = svgMark.append("g").attr("id", "groupOrange"); // création d'un layer svg pour les segment du groupe orange.
+      // crée une zone svg ave une taille précise et un niveau de zoom. (il reste des marges autour du svg si on zoom)
+      var svgMark = rightColumn
+          .append("svg")
+          .attr("id", "svgZone")
+          .attr("width", markWidth)
+          .attr("height", markHeight)
+          .attr("transform", "scale(.5)");
 
+      // chaque base BRAVO a son groupe de segement ça nous permettra de les moduler.
+      var groupBlue = svgMark.append("g").attr("id", "groupBlue"); // création d'un layer svg pour les segment du groupe bleu.
+      var groupRed = svgMark.append("g").attr("id", "groupRed");
+      var groupAnthracite = svgMark.append("g").attr("id", "groupAnthracite");
+      var groupViolet = svgMark.append("g").attr("id", "groupViolet");
+      var groupOrange = svgMark.append("g").attr("id", "groupOrange");
 
+      // Segments du groupe Bleu
+      // <polyline id="b0" class="segment" points="500 0, 550 0, 500 100, 450 0, 500 0" stroke="blue" stroke-width="20" fill="blue" />
+      // <polyline id="b1" class="segment" points="1000 500, 1000 550, 900 500, 1000 450, 1000 500" stroke="blue" stroke-width="20" fill="blue" />
+      // <polyline id="b2" class="segment" points="500 1000, 450 1000, 500 900, 550 1000, 500 1000" stroke="blue" stroke-width="20" fill="blue" />
+      // <polyline id="b3" class="segment" points="0 500, 0 450, 100 500, 0 550, 0 500" stroke="blue" stroke-width="20" fill="blue" />
+
+      // Segments du groupe Rouge
+      // <line id="r0" class="segment" x1="0" y1="0" x2="500" y2="500" stroke="red" stroke-width="20" />
+      // <line id="r1" class="segment" x1="1000" y1="0" x2="500" y2="500" stroke="red" stroke-width="20" />
+      // <line id="r2" class="segment" x1="1000" y1="1000" x2="500" y2="500" stroke="red" stroke-width="20" />
+      // <line id="r3" class="segment" x1="0" y1="1000" x2="500" y2="500" stroke="red" stroke-width="20" />
+
+      // Segments du groupe anthracite
+      // <rect id="a0" class="segment" x="220" y="0" width="60" height="60" fill="#555" />
+      // <rect id="a1" class="segment" x="720" y="0" width="60" height="60" fill="#555" />
+      //
+      // <rect id="a2" class="segment" x="0" y="220" width="60" height="60" fill="#555" />
+      // <rect id="a3" class="segment" x="220" y="220" width="60" height="60" fill="#555" />
+      // <rect id="a4" class="segment" x="470" y="220" width="60" height="60" fill="#555" />
+      // <rect id="a5" class="segment" x="720" y="220" width="60" height="60" fill="#555" />
+      // <rect id="a6" class="segment" x="940" y="220" width="60" height="60" fill="#555" />
+      //
+      // <rect id="a7" class="segment" x="220" y="470" width="60" height="60" fill="#555" />
+      // <rect id="a8" class="segment" x="720" y="470" width="60" height="60" fill="#555" />
+      //
+      // <rect id="a9" class="segment" x="0" y="720" width="60" height="60" fill="#555" />
+      // <rect id="aa" class="segment" x="220" y="720" width="60" height="60" fill="#555" />
+      // <rect id="ab" class="segment" x="470" y="720" width="60" height="60" fill="#555" />
+      // <rect id="ac" class="segment" x="720" y="720" width="60" height="60" fill="#555" />
+      // <rect id="ad" class="segment" x="940" y="720" width="60" height="60" fill="#555" />
+      //
+      // <rect id="aa" class="segment" x="220" y="940" width="60" height="60" fill="#555" />
+      // <rect id="aa" class="segment" x="720" y="940" width="60" height="60" fill="#555" />
+
+      // Segments du groupe Violet
+      // <line id="v0" class="segment" x1="0" y1="0" x2="500" y2="0" stroke="violet" stroke-width="20" />
+      // <line id="v1" class="segment" x1="500" y1="0" x2="1000" y2="0" stroke="violet" stroke-width="20" />
+      // <line id="v2" class="segment" x1="1000" y1="0" x2="1000" y2="500" stroke="violet" stroke-width="20" />
+      // <line id="v3" class="segment" x1="1000" y1="500" x2="1000" y2="1000" stroke="violet" stroke-width="20" />
+      // <line id="v4" class="segment" x1="1000" y1="1000" x2="500" y2="1000" stroke="violet" stroke-width="20" />
+      // <line id="v5" class="segment" x1="500" y1="1000" x2="0" y2="1000" stroke="violet" stroke-width="20" />
+      // <line id="v6" class="segment" x1="0" y1="1000" x2="0" y2="500" stroke="violet" stroke-width="20" />
+      // <line id="v7" class="segment" x1="0" y1="500" x2="0" y2="0" stroke="violet" stroke-width="20" />
+      //
+      // <line id="v8" class="segment" x1="500" y1="0" x2="500" y2="500" stroke="violet" stroke-width="20" />
+      // <line id="v9" class="segment" x1="1000" y1="500" x2="500" y2="500" stroke="violet" stroke-width="20" />
+      // <line id="va" class="segment" x1="500" y1="1000" x2="500" y2="500" stroke="violet" stroke-width="20" />
+      // <line id="vb" class="segment" x1="0" y1="500" x2="500" y2="500" stroke="violet" stroke-width="20" />
+
+      // Segment du groupe Orange,
       // <line id="o0" class="segment" x1="0" y1="0" x2="250" y2="500" stroke="orange" stroke-width="20" />
-        groupOrange.append("line")
-          .attr("id", "o0").attr("class", "segment")
-          .attr("x1", "0").attr("y1", "0")
-          .attr("x2", "250").attr("y2", "500")
-          .attr("stroke", "orange")
-          .attr("stroke-width", "20")
+      // <line id="o1" class="segment" x1="250" y1="500" x2="500" y2="0" stroke="orange" stroke-width="20" />
+      // <line id="o2" class="segment" x1="250" y1="500" x2="500" y2="1000" stroke="orange" stroke-width="20" />
+      // <line id="o3" class="segment" x1="250" y1="500" x2="0" y2="1000" stroke="orange" stroke-width="20" />
+      //
+      // <line id="o4" class="segment" x1="500" y1="0" x2="750" y2="500" stroke="orange" stroke-width="20" />
+      // <line id="o5" class="segment" x1="750" y1="500" x2="1000" y2="0" stroke="orange" stroke-width="20" />
+      // <line id="o6" class="segment" x1="750" y1="500" x2="1000" y2="1000" stroke="orange" stroke-width="20" />
+      // <line id="o7" class="segment" x1="750" y1="500" x2="500" y2="1000" stroke="orange" stroke-width="20" />
+      groupOrange.append("line")
+        .attr("id", "o0").attr("class", "segment")
+        .attr("x1", "0").attr("y1", "0")
+        .attr("x2", "250").attr("y2", "500")
+        .attr("stroke", "orange")
+        .attr("stroke-width", "20")
+
+
     }
 
   /**
