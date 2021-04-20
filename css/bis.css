@@ -136,5 +136,10 @@ svg{
   #appSliders{
     display:none;
   }
+  .segment{
+    fill: black;
+    color: black;
+    stroke: black;
+  }
 
 }
