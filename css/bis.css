@@ -130,12 +130,16 @@ svg{
 
   #parchemin{
     margin: 0;
+    padding: 0;
     background-image: none;
     background-color: transparent;
-
+  }
+  #zone, #page {
+    margin: 0;
+    padding: 0;
   }
   #structure{
-    transform: scale(.6);
+    transform: scale(1);
   }
   #appControler{
     display:none;
