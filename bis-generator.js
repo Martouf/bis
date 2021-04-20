@@ -71,7 +71,77 @@
     // showMarkFromCode("vc"); // affiche le(s) segments qui correspondent à un code.
     showMarkFromGenome(genome); // le génome est un tableau de code. ex: ["va","a3","o2","b5"]
     showGenome(genome); // affiche le genome dans la page, visible lors de l'impression.
-    
+
+    event.stopPropagation(); // stop la propagation du click sinon il y a un risque de faire un "change" non voulu en imprimant.
+  });
+
+  d3.select("#"+htmlIdPrefix+"communiste").on("change", function() {
+    hideAllSegment();
+
+    var numberOfCode = d3.select("#"+htmlIdPrefix+"numberOfCode").node().value;
+    //console.log(numberOfCode);
+
+    var genome = genomeGenerator(numberOfCode);
+    // showMarkFromCode("vc"); // affiche le(s) segments qui correspondent à un code.
+    showMarkFromGenome(genome); // le génome est un tableau de code. ex: ["va","a3","o2","b5"]
+    showGenome(genome); // affiche le genome dans la page, visible lors de l'impression.
+
+    event.stopPropagation(); // stop la propagation du click sinon il y a un risque de faire un "change" non voulu en imprimant.
+  });
+
+  d3.select("#"+htmlIdPrefix+"capitaliste").on("change", function() {
+    hideAllSegment();
+
+    var numberOfCode = d3.select("#"+htmlIdPrefix+"numberOfCode").node().value;
+    //console.log(numberOfCode);
+
+    var genome = genomeGenerator(numberOfCode);
+    // showMarkFromCode("vc"); // affiche le(s) segments qui correspondent à un code.
+    showMarkFromGenome(genome); // le génome est un tableau de code. ex: ["va","a3","o2","b5"]
+    showGenome(genome); // affiche le genome dans la page, visible lors de l'impression.
+
+    event.stopPropagation(); // stop la propagation du click sinon il y a un risque de faire un "change" non voulu en imprimant.
+  });
+
+  d3.select("#"+htmlIdPrefix+"montagnard").on("change", function() {
+    hideAllSegment();
+
+    var numberOfCode = d3.select("#"+htmlIdPrefix+"numberOfCode").node().value;
+    //console.log(numberOfCode);
+
+    var genome = genomeGenerator(numberOfCode);
+    // showMarkFromCode("vc"); // affiche le(s) segments qui correspondent à un code.
+    showMarkFromGenome(genome); // le génome est un tableau de code. ex: ["va","a3","o2","b5"]
+    showGenome(genome); // affiche le genome dans la page, visible lors de l'impression.
+
+    event.stopPropagation(); // stop la propagation du click sinon il y a un risque de faire un "change" non voulu en imprimant.
+  });
+
+  d3.select("#"+htmlIdPrefix+"anguleux").on("change", function() {
+    hideAllSegment();
+
+    var numberOfCode = d3.select("#"+htmlIdPrefix+"numberOfCode").node().value;
+    //console.log(numberOfCode);
+
+    var genome = genomeGenerator(numberOfCode);
+    // showMarkFromCode("vc"); // affiche le(s) segments qui correspondent à un code.
+    showMarkFromGenome(genome); // le génome est un tableau de code. ex: ["va","a3","o2","b5"]
+    showGenome(genome); // affiche le genome dans la page, visible lors de l'impression.
+
+    event.stopPropagation(); // stop la propagation du click sinon il y a un risque de faire un "change" non voulu en imprimant.
+  });
+
+  d3.select("#"+htmlIdPrefix+"equilibre").on("change", function() {
+    hideAllSegment();
+
+    var numberOfCode = d3.select("#"+htmlIdPrefix+"numberOfCode").node().value;
+    //console.log(numberOfCode);
+
+    var genome = genomeGenerator(numberOfCode);
+    // showMarkFromCode("vc"); // affiche le(s) segments qui correspondent à un code.
+    showMarkFromGenome(genome); // le génome est un tableau de code. ex: ["va","a3","o2","b5"]
+    showGenome(genome); // affiche le genome dans la page, visible lors de l'impression.
+
     event.stopPropagation(); // stop la propagation du click sinon il y a un risque de faire un "change" non voulu en imprimant.
   });
 
