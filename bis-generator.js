@@ -62,6 +62,7 @@
     // showMarkFromCode("vc"); // affiche le(s) segments qui correspondent à un code.
     showMarkFromGenome(genome); // le génome est un tableau de code. ex: ["va","a3","o2","b5"]
 
+    event.stopPropagation(); // stop la propagation du click sinon il y a un risque de faire un "change" non voulu en imprimant.
   });
 
   // au changement du slider regénère une marque de famille
@@ -75,6 +76,7 @@
     // showMarkFromCode("vc"); // affiche le(s) segments qui correspondent à un code.
     showMarkFromGenome(genome); // le génome est un tableau de code. ex: ["va","a3","o2","b5"]
 
+    event.stopPropagation(); // stop la propagation du click sinon il y a un risque de faire un "change" non voulu en imprimant.
   });
 
   // au clic du bouton d'impression... imprime
