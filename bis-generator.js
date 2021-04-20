@@ -122,7 +122,7 @@
       var treeQuartHeight = 3*markHeight/4;  // 3/4 de la hauteur
 
       var anthraciteBlockWidth = 50; // largeur d'un bloc anthracite
-      var blueBlockWidth = 100; // largeur de la base du triangle bleu
+      var blueBlockWidth = 50; // largeur de la base du triangle bleu
 
       var strokeWidth = 20; // épaisseur d'un trait
 
