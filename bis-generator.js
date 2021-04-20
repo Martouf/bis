@@ -45,18 +45,18 @@
   var htmlBody = d3.select("#"+htmlIdPrefix+"zone");
 
 
-  var debug = htmlBody
-      .append("div")
-      .attr("id", "debug");
-
-  var tailleEcran = debug
-            .append("p").text("largeur: "+windowWidth)
-            .append("p").text("hauteur: "+windowHeight)
-            .append("p").text("inner Largeur: "+windowInnerWidth)
-            .append("p").text("inner Hauteur: "+windowInnerHeight)
-            .append("p").text("pixel ratio: "+window.devicePixelRatio);
-
-
+  // var debug = htmlBody
+  //     .append("div")
+  //     .attr("id", "debug");
+  //
+  // var tailleEcran = debug
+  //           .append("p").text("largeur: "+windowWidth)
+  //           .append("p").text("hauteur: "+windowHeight)
+  //           .append("p").text("inner Largeur: "+windowInnerWidth)
+  //           .append("p").text("inner Hauteur: "+windowInnerHeight)
+  //           .append("p").text("pixel ratio: "+window.devicePixelRatio);
+  //
+  //
 
 
 
