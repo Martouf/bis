@@ -118,6 +118,26 @@ svg{
   bottom: -20px;
 }
 
+.textInputContainer{
+    width: 90%;
+    border: solid 1px white;
+    border-radius: 15px;
+    margin: 10px;
+    padding: 20px;
+
+    display:flex;
+    flex-wrap: wrap;
+    justify-content:space-space-between;
+}
+#email{
+  flex: 3;
+  font-size: 1.5em;
+  border-radius: 15px;
+}
+#sendEmail{
+  flex: 1;
+}
+
 /* override styles when printing */
 @media print {
 
