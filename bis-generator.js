@@ -25,7 +25,7 @@
 
   var windowWidth = 1180; // taille par défaut si non existant // l'ipad air devrait avoir une résolution réelle de 1180X820 (+ le facteur 2 retina)
   var windowWidth = (document.body.clientWidth);
-  var windowHeight = (document.body.clientWidth);
+  var windowHeight = (document.body.clientHeigth);
 
   var windowInnerHeight = window.innerHeight; // taille de la hauteur de la fenêtre sans la barre de menu. https://developer.mozilla.org/fr/docs/Web/API/Window/innerHeight
   var windowInnerWidth = window.innerWidth;
