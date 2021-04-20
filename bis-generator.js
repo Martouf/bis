@@ -80,6 +80,7 @@
   // au clic du bouton d'impression... imprime
   d3.select("#"+htmlIdPrefix+"printButton").on("click", function() {
     window.print();
+    event.stopPropagation(); // stop la propagation du click sinon il y a un risque de faire un "change" non voulu en imprimant.
   });
 
 
@@ -610,6 +611,12 @@ function showSegment(idHtmlSegment) {
   var svgStructure = d3.select("#structure");
   var selectedeSegment = svgStructure.select("#"+idHtmlSegment).style("display", "inline");
 
+}
+
+// If the drag behavior prevents the default click,
+// also stop propagation so we don’t click-to-zoom.
+function stopped() {
+  if (d3.event.defaultPrevented) d3.event.stopPropagation();
 }
 
 
