@@ -143,6 +143,7 @@ svg{
   }
   #structure{
     transform: scale(.8);
+    margin-top: -30px; /* remonte pour compenser la marge générée par le scale */
   }
   #appControler{
     display:none;
