@@ -50,7 +50,7 @@ svg{
 }
 
 .button {
-  -webkit-appearance: none;
+  -webkit-appearance: none; /* supprime sur iPad l'apparence par défaut du bouton et permet de le personnaliser */
   background-color: #555;
   border: 2px solid white;
   color: white;
@@ -105,6 +105,10 @@ svg{
   border: solid 1px white;
 }
 
+.impression{
+  display: none;
+}
+
 /* override styles when printing */
 @media print {
 
@@ -124,9 +128,8 @@ svg{
   }
 
   #parchemin{
-    margin: auto;
-    width: 230px;
-    padding: 3px;
+    margin: 0;
+    /* width: 230px; */
     background-image: none;
     background-color: transparent;
 
@@ -142,6 +145,12 @@ svg{
     fill: black;
     color: black;
     stroke: black;
+  }
+  .impression{
+    display: block;
+  }
+  #logo{
+      width: 200px;
   }
 
 }
