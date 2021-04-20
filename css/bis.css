@@ -167,11 +167,11 @@ svg{
     display: block;
   }
   #logo{
+      margin-top: -15px;
       width: 300px;
   }
   .paperGenome{
     color: black;
-    margin-top: 15px;
   }
   .paperGenome::before{
     content: "code: ";
