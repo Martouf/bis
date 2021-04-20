@@ -32,7 +32,7 @@
 
   // valeur par défaut du viewport svg
   // comme la marque de famille est carrée, on indique que la largeur. On en déduit la hauteur
-  var markDefautlWidth = 500;
+  var markDefautlWidth = 400;
 
   /////////// Initiatilsation  ////////////
 
@@ -43,20 +43,6 @@
 //////// création de svg dynamique /////
   // Variable qui représente l'élément body sur lequel on se croche pour générer le contenu via d3.js
   var htmlBody = d3.select("#"+htmlIdPrefix+"zone");
-
-
-  // var debug = htmlBody
-  //     .append("div")
-  //     .attr("id", "debug");
-  //
-  // var tailleEcran = debug
-  //           .append("p").text("largeur: "+windowWidth)
-  //           .append("p").text("hauteur: "+windowHeight)
-  //           .append("p").text("inner Largeur: "+windowInnerWidth)
-  //           .append("p").text("inner Hauteur: "+windowInnerHeight)
-  //           .append("p").text("pixel ratio: "+window.devicePixelRatio);
-  //
-  //
 
 
 
