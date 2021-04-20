@@ -32,7 +32,7 @@
 
   // valeur par défaut du viewport svg
   // comme la marque de famille est carrée, on indique que la largeur. On en déduit la hauteur
-  var markDefautlWidth = 400;
+  var markDefautlWidth = 350;
 
   /////////// Initiatilsation  ////////////
 
@@ -124,10 +124,10 @@
       var treeQuartWidth = 3*markWidth/4;  // 3/4 da la largeur
       var treeQuartHeight = 3*markHeight/4;  // 3/4 de la hauteur
 
-      var anthraciteBlockWidth = 50; // largeur d'un bloc anthracite
+      var anthraciteBlockWidth = 40; // largeur d'un bloc anthracite
       var blueBlockWidth = 50; // largeur de la base du triangle bleu
 
-      var strokeWidth = 20; // épaisseur d'un trait
+      var strokeWidth = 10; // épaisseur d'un trait
 
       // crée une zone svg ave une taille précise et un niveau de zoom. (il reste des marges autour du svg si on zoom)
       var svgMark = htmlBody

@@ -24,9 +24,10 @@ svg{
   /* border: solid 1px #888; */
 }
 #parchemin{
-  margin: auto;
-  width: 800px;
+  width: 85vw;
+  /* width: 780px; */
   padding: 35px;
+  margin: auto;
   background-image: url('../img/fond-parchemin.jpg');
   background-repeat: no-repeat;
   background-size: contain;
@@ -49,6 +50,7 @@ svg{
 }
 
 .button {
+  -webkit-appearance: none;
   background-color: #555;
   border: 2px solid white;
   color: white;
