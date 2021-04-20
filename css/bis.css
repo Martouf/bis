@@ -171,6 +171,7 @@ svg{
   }
   .paperGenome{
     color: black;
+    margin-top: 5px;
   }
   .paperGenome::before{
     content: "code: ";
