@@ -139,7 +139,7 @@ svg{
     padding: 0;
   }
   #structure{
-    transform: scale(1);
+    transform: scale(.8);
   }
   #appControler{
     display:none;
@@ -157,7 +157,7 @@ svg{
     display: block;
   }
   #logo{
-      width: 200px;
+      width: 300px;
   }
 
 }
