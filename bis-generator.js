@@ -196,8 +196,16 @@
                 .attr("type", "text")
                 .attr("name", "pseudo")
                 .attr("id", "pseudo")
-                .attr("value", "Edmée...")
+                .attr("maxlength", "30")
+                .attr("value", "Edmée...");
 
+    blockPseudo.append("p")
+                .attr("class", "aidePseudo")
+                .text("Appuyez sur le nom ci-dessus pour le remplacer...");
+
+    blockPseudo.append("p")
+                .attr("class", "aidePseudo")
+                .text("...et ajouter votre nom.");
 
   };
 

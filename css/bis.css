@@ -29,7 +29,7 @@ svg{
   justify-content:space-between;
 }
 /* Bloc pseudo */
-#blockPseudo{
+#blockPseudo, .aidePseudo{
   /* height: 350px; */
   color: #391818;
   font-family: cursive;
@@ -145,7 +145,7 @@ svg{
 
     display:flex;
     flex-wrap: wrap;
-    justify-content:space-space-between;
+    justify-content:space-between;
 }
 #email{
   flex: 3;
@@ -175,13 +175,14 @@ svg{
   h1{
     display:none;
   }
-  #blockPseudo h3{
+  #blockPseudo h3, .aidePseudo{
     display: none;
   }
   #pseudo{
     position: absolute;
     top: 275px;
     left: 10px;
+    color: black;
   }
 
   #parchemin{
