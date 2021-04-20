@@ -163,6 +163,43 @@
   showMarkFromGenome(genome); // le génome est un tableau de code. ex: ["va","a3","o2","b5"]
   showGenome(genome); // affiche le genome dans la page, visible lors de l'impression.
 
+  // affiche la zone blockPseudo
+  showPseudo(markDefautlWidth);
+
+
+  /**
+  * Fonction qui affiche la zone où l'on peut entrer son pseudo
+  *  Nécessite un ancrage sur le div htmlBody
+  *
+  *  @param markWidth → int largeur en px
+  * @return
+  */
+  function showPseudo(markWidth) {
+
+    // on fait la même hauteur que le bloc de la marque.
+    var markHeight = markWidth;
+
+    // <div id="blockPseudo">
+    //   <h3>Votre nom ou pseudo</h3>
+    //   <input type="text" name="pseudo" id="pseudo" value="Martouf">
+    // </div>
+
+    // crée une zone svg ave une taille précise et un niveau de zoom. (il reste des marges autour du svg si on zoom)
+    var blockPseudo = htmlBody
+        .append("div")
+        .attr("id", "blockPseudo")
+        .attr("width", markWidth)
+        .attr("height", markHeight);
+
+    blockPseudo.append("h3").text("Cette marque appartient à...");
+    blockPseudo.append("input")
+                .attr("type", "text")
+                .attr("name", "pseudo")
+                .attr("id", "pseudo")
+                .attr("value", "Edmée...")
+
+
+  };
 
     /**
     * Fonction qui affiche tous les segments.

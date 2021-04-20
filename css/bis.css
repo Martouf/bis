@@ -23,6 +23,24 @@ svg{
   margin: 0px;
   /* border: solid 1px #888; */
 }
+#zone{
+  display:flex;
+  flex-wrap: wrap;
+  justify-content:space-between;
+}
+/* Bloc pseudo */
+#blockPseudo{
+  /* height: 350px; */
+  color: #391818;
+  font-family: cursive;
+}
+#pseudo{
+  background-color: transparent;
+  font-family: cursive;
+  font-size: 1.5em;
+  color: #391818; /* Brun*/
+  border: none;
+}
 #parchemin{
   width: 85vw;
   /* width: 780px; */
@@ -138,6 +156,7 @@ svg{
   flex: 1;
 }
 
+
 /* override styles when printing */
 @media print {
 
@@ -156,6 +175,14 @@ svg{
   h1{
     display:none;
   }
+  #blockPseudo h3{
+    display: none;
+  }
+  #pseudo{
+    position: absolute;
+    top: 20px;
+    left: 10px;
+  }
 
   #parchemin{
     margin: 0;
@@ -163,9 +190,12 @@ svg{
     background-image: none;
     background-color: transparent;
   }
-  #zone, #page, #genome {
+  #zone, #page, #genome, #blockPseudo {
     margin: 0;
     padding: 0;
+  }
+  #zone{
+    flex:none;
   }
   #structure{
     transform: scale(.8);
