@@ -116,6 +116,7 @@ svg{
     background: #fff;
     font-family: helvetica, sans-serif;
     margin: 0;
+    padding: 0;
   	color: #000;
   }
 
@@ -129,10 +130,12 @@ svg{
 
   #parchemin{
     margin: 0;
-    width: 200px;
     background-image: none;
     background-color: transparent;
 
+  }
+  #structure{
+    transform: scale(.6);
   }
   #appControler{
     display:none;
