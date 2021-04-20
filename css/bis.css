@@ -137,7 +137,7 @@ svg{
     background-image: none;
     background-color: transparent;
   }
-  #zone, #page {
+  #zone, #page, #genome {
     margin: 0;
     padding: 0;
   }
