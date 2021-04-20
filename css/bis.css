@@ -109,7 +109,13 @@ svg{
   display: none;
 }
 .paperGenome{
-  color: #555;
+  color: #6a6464;
+  margin: 10px;
+}
+/* Positionnement en bas de l'écran */
+#genome{
+  position: absolute;
+  bottom: -20px;
 }
 
 /* override styles when printing */
