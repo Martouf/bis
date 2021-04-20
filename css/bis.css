@@ -125,7 +125,8 @@ svg{
     margin: auto;
     width: 500px;
     padding: 35px;
-    background-color: white;
+    background-image: none;
+    background-color: transparent;
 
   }
   #appControler{

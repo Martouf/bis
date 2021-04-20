@@ -16,8 +16,6 @@
   // https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Strict_mode
   "use strict";
 
-  var cursorCorrectionMap = 0;
-  var cursorCorrectionMapTop = 0; // 290
   var htmlIdPrefix = ""; // permet d'ajouter un prefix pour distinguer input html d'autres instances de la même app dans la même page.
   var markIdPrefix = ""; // permet de distinguer des marque dans la même page.
 
@@ -27,6 +25,10 @@
 
   var windowWidth = 1180; // taille par défaut si non existant // l'ipad air devrait avoir une résolution réelle de 1180X820 (+ le facteur 2 retina)
   var windowWidth = (document.body.clientWidth);
+  var windowHeight = (document.body.clientWidth);
+
+  var windowInnerHeight = window.innerHeight; // taille de la hauteur de la fenêtre sans la barre de menu. https://developer.mozilla.org/fr/docs/Web/API/Window/innerHeight
+  var windowInnerWidth = window.innerWidth;
 
   // valeur par défaut du viewport svg
   // comme la marque de famille est carrée, on indique que la largeur. On en déduit la hauteur
@@ -41,6 +43,21 @@
 //////// création de svg dynamique /////
   // Variable qui représente l'élément body sur lequel on se croche pour générer le contenu via d3.js
   var htmlBody = d3.select("#"+htmlIdPrefix+"zone");
+
+
+  var debug = htmlBody
+      .append("div")
+      .attr("id", "debug");
+
+  var tailleEcran = debug
+            .append("p").text("largeur: "+windowWidth)
+            .append("p").text("hauteur: "+windowHeight)
+            .append("p").text("inner Largeur: "+windowInnerWidth)
+            .append("p").text("inner Hauteur: "+windowInnerHeight)
+            .append("p").text("pixel ratio: "+window.devicePixelRatio);
+
+
+
 
 
   // la taille du contenu = 946px  => 3/4 = 710
