@@ -39,15 +39,9 @@
   var numberOfCode = d3.select("#"+htmlIdPrefix+"numberOfCode").node().value;
 
 
-
 //////// création de svg dynamique /////
   // Variable qui représente l'élément body sur lequel on se croche pour générer le contenu via d3.js
   var htmlBody = d3.select("#"+htmlIdPrefix+"zone");
-
-
-
-  // la taille du contenu = 946px  => 3/4 = 710
-  // mapWidth =  .75 * windowWidth; // règle la taille du viewport à 75% de la taille de la fenêtre
 
 
   // lancement app
@@ -62,6 +56,7 @@
     // showMarkFromCode("vc"); // affiche le(s) segments qui correspondent à un code.
     showMarkFromGenome(genome); // le génome est un tableau de code. ex: ["va","a3","o2","b5"]
 
+    showGenome(genome); // affiche le genome dans la page, visible lors de l'impression.
     event.stopPropagation(); // stop la propagation du click sinon il y a un risque de faire un "change" non voulu en imprimant.
   });
 
@@ -75,7 +70,8 @@
     var genome = genomeGenerator(numberOfCode);
     // showMarkFromCode("vc"); // affiche le(s) segments qui correspondent à un code.
     showMarkFromGenome(genome); // le génome est un tableau de code. ex: ["va","a3","o2","b5"]
-
+    showGenome(genome); // affiche le genome dans la page, visible lors de l'impression.
+    
     event.stopPropagation(); // stop la propagation du click sinon il y a un risque de faire un "change" non voulu en imprimant.
   });
 
@@ -95,6 +91,7 @@
   var genome = genomeGenerator(numberOfCode);
   // showMarkFromCode("vc"); // affiche le(s) segments qui correspondent à un code.
   showMarkFromGenome(genome); // le génome est un tableau de code. ex: ["va","a3","o2","b5"]
+  showGenome(genome); // affiche le genome dans la page, visible lors de l'impression.
 
 
     /**
@@ -567,6 +564,42 @@ function showAllSegment() {
 
   svgStructure.selectAll(".segment")
     .style("display", "inline");
+}
+
+/**
+* Fonction qui affiche le génome de la marque de famille sous forme d'un code va-a3-02-b5 ...
+* Affiche le génome dans un paragraphe du div genome.
+*
+* @param genome  → tableau → une liste de code qui est le génome complet d'une marque de famille.  ex: ["va","a3","o2","b5"]
+* @return
+*/
+function showGenome(genome) {
+
+  var textGenome = getTextGenome(genome);
+  d3.select(".paperGenome").remove(); // vide les éléments précédent
+  var divGenome = d3.select("#genome").append("p").attr("class","paperGenome").text(textGenome); // ajout un p avec un classe paperGenome
+}
+
+/**
+* Fonction qui fourni le génome de la marque de famille sous forme d'un code va-a3-02-b5 ...
+*
+* @param genome  → tableau → une liste de code qui est le génome complet d'une marque de famille.  ex: ["va","a3","o2","b5"]
+* @return paperGenome →  string → les codes séparé par des - Ex: va-a3-02-b5
+*/
+function getTextGenome(genome) {
+
+  var paperGenome = "";
+
+  // pour chaque code reçu dans le tableau
+  genome.forEach(function(code){
+    if (isEmpty(paperGenome)) {
+        paperGenome += code;
+    }else{
+      paperGenome += "-"+code;
+    }
+  });
+
+  return paperGenome;
 }
 
 /**

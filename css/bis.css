@@ -35,7 +35,7 @@ svg{
 #appControler{
   margin: auto;
   width: 90%;
-  padding-top: 30px;
+  /* padding-top: 10px; */
   font-size: 1.5em;
 
   display:flex;
@@ -108,6 +108,9 @@ svg{
 .impression{
   display: none;
 }
+.paperGenome{
+  color: #555;
+}
 
 /* override styles when printing */
 @media print {
@@ -159,5 +162,10 @@ svg{
   #logo{
       width: 300px;
   }
-
+  .paperGenome{
+    color: black;
+  }
+  .paperGenome::before{
+    content: "code: ";
+  }
 }
