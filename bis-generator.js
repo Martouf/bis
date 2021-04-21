@@ -151,6 +151,26 @@
     event.stopPropagation(); // stop la propagation du click sinon il y a un risque de faire un "change" non voulu en imprimant.
   });
 
+  // au clic du bouton d'envoi par e-mail, vérifie si un mail existe et appel la fonction d'envoir de mail
+  d3.select("#"+htmlIdPrefix+"sendEmail").on("click", function() {
+
+    // va chercher le contenu du champ email.
+    var emailAddress = d3.select("#"+htmlIdPrefix+"email").node().value;
+    if (isEmpty(emailAddress)) {
+      d3.select("#"+htmlIdPrefix+"email").attr("placeholder", "Ajoutez une adresse e-mail !");  // précise d'ajouter un mail
+      d3.select("#"+htmlIdPrefix+"email").transition().delay(5000).attr("placeholder", ""); // et au bout de 5s vide le champ
+    }else{
+
+      var textGenome = d3.select("."+htmlIdPrefix+"paperGenome").text(); // va cherche la valeur du génome affichée en bas à gauche
+      var pseudo = d3.select("#"+htmlIdPrefix+"pseudo").node().value;  // va chercher la valeur du pseudo
+
+      sendMarkViaMail(textGenome, emailAddress, pseudo);
+      d3.select("#"+htmlIdPrefix+"email").transition().delay(5000).node().value = ""; // vide le champ pour le visiteur suivant.
+    }
+
+    event.stopPropagation(); // stop la propagation du click sinon il y a un risque de faire un "change" non voulu en imprimant.
+  });
+
 
   // initialisation de l'app au démarrage
   showBaseStructure(markDefautlWidth,"",1);
@@ -166,6 +186,8 @@
   // affiche la zone blockPseudo
   showPseudo(markDefautlWidth);
 
+  //sendMarkViaMail("af-c3-va-b", "blanc@martouf.ch", "Toto"); // test
+
   /**
   * Fonction qui appelle un service ajax php qui envoie un e-mail avec un lien vers la page qui affiche la marque
   *
@@ -179,15 +201,16 @@
     // local ou prod
     // https://rue2.lan/bis/utile/send-message.php?genome=af-c3-va-b0&destinataire=blanc@martouf.ch&pseudo=Momo
     // https://ecodev.ch/bis/utile/send-message.php?genome=af-c3-va-b0&destinataire=blanc@martouf.ch&pseudo=Momo
-    destinataire = "blanc@martouf.ch"; // test
-    var url = "https://rue2.lan/bis/utile/send-message.php?genome="+textGenome+"&destinataire="+destinataire;
+    var url = "https://ecodev.ch/bis/utile/send-message.php?genome="+textGenome+"&destinataire="+destinataire;
+  //  var url = "https://rue2.lan/bis/utile/send-message.php?genome="+textGenome+"&destinataire="+destinataire;
     if (!isEmpty(pseudo)) {
       url += "&pseudo="+pseudo;
     }
+  //  console.log(url);
 
     d3.text(url, function(error, text) {
       if (error) throw error;
-      console.log(text); // si ok.. devrait être "ok"  => une page en html !
+    //  console.log(text); // si ok.. devrait être "ok"  => une page en html !
     });
   }
 
@@ -223,7 +246,7 @@
                 .attr("name", "pseudo")
                 .attr("id", "pseudo")
                 .attr("maxlength", "30")
-                .attr("value", "Edmée...");
+                .attr("value", "Edmée");
 
     blockPseudo.append("p")
                 .attr("class", "aidePseudo")
