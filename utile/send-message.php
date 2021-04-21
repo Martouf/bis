@@ -34,7 +34,7 @@ if (isset($_GET['destinataire'])) {
   $destinataire = '';
 }
 
-sendMark();
+testMail();
 
 // todo tester le pattern du mail.
 // todo: on veut l'url.. https://ecodev.ch/bis/marque.html?genome=a1-r3-b4&pseudo=Momo  urldecode ... etc..
