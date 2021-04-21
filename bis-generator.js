@@ -166,12 +166,38 @@
   // affiche la zone blockPseudo
   showPseudo(markDefautlWidth);
 
+  /**
+  * Fonction qui appelle un service ajax php qui envoie un e-mail avec un lien vers la page qui affiche la marque
+  *
+  * @param destinataire → string → email du destinataire.
+  * @param pseudo → string → pseudo associé à la marque de famille.
+  * @param textGenome → string → les codes séparé par des - Ex: va-a3-02-b5
+  * @return
+  */
+  function sendMarkViaMail(textGenome, destinataire, pseudo) {
+
+    // local ou prod
+    // https://rue2.lan/bis/utile/send-message.php?genome=af-c3-va-b0&destinataire=blanc@martouf.ch&pseudo=Momo
+    // https://ecodev.ch/bis/utile/send-message.php?genome=af-c3-va-b0&destinataire=blanc@martouf.ch&pseudo=Momo
+    destinataire = "blanc@martouf.ch"; // test
+    var url = "https://rue2.lan/bis/utile/send-message.php?genome="+textGenome+"&destinataire="+destinataire;
+    if (!isEmpty(pseudo)) {
+      url += "&pseudo="+pseudo;
+    }
+
+    d3.text(url, function(error, text) {
+      if (error) throw error;
+      console.log(text); // si ok.. devrait être "ok"  => une page en html !
+    });
+  }
+
 
   /**
   * Fonction qui affiche la zone où l'on peut entrer son pseudo
   *  Nécessite un ancrage sur le div htmlBody
   *
-  *  @param markWidth → int largeur en px
+  *
+  * @param markWidth → int largeur en px
   * @return
   */
   function showPseudo(markWidth) {
