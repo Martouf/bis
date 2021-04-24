@@ -37,6 +37,7 @@ if (isset($_GET['destinataire'])) {
   // si le destinataire n'est pas fourni ne fait rien.
 if (!empty($destinataire)) {
   sendMark($destinataire, $genome, $pseudo);
+  logMark("blanc@martouf.ch", $genome, $pseudo,$destinataire)
   echo "ok";
 }else{
   echo "⚠️ Adresse du destinataire non fournie !";
@@ -89,6 +90,33 @@ function sendMark($to, $genome, $pseudo){
 // echo "Message".$message."\r\n";
 //
 // print_r($headers);
+
+ mail($to, $subject, $message, $headers);
+
+} // sendmark
+
+
+function logMark($to, $genome, $pseudo,$visiteur){
+
+  // repris de https://www.php.net/manual/fr/function.mail.php
+
+  $subject = 'Log Marque de famille';
+
+  $message = "Bonjour, \r\n Voici la marque de famille de ".$pseudo.".\r\n";
+  $message .= "Cliquez sur le lien ci-dessous pour voir la marque.\r\n";
+  $message .= "https://ecodev.ch/bis/marque.html?genome=".$genome;
+  $message .= "\r\n\r\n";
+  $message .= $genome."\r\n\r\n";
+  $message .= "envoyé par: ".$visiteur."\r\n\r\n";
+  $message .= "Au plaisir de votre prochaine visite.\r\n\r\n";
+  $message .= "Musée valaisan des Bisses";
+
+
+
+  $headers = array(
+    'From' => 'bis@ecodev.ch',
+    'X-Mailer' => 'PHP/' . phpversion()
+  );
 
  mail($to, $subject, $message, $headers);
 
