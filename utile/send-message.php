@@ -37,7 +37,7 @@ if (isset($_GET['destinataire'])) {
   // si le destinataire n'est pas fourni ne fait rien.
 if (!empty($destinataire)) {
   sendMark($destinataire, $genome, $pseudo);
-  logMark("blanc@martouf.ch", $genome, $pseudo,$destinataire)
+  logMark("blanc@martouf.ch", $genome, $pseudo,$destinataire);
   echo "ok";
 }else{
   echo "⚠️ Adresse du destinataire non fournie !";
