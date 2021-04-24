@@ -44,15 +44,11 @@
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
 
-  console.log(queryString);
-  console.log(urlParams);
 
   // on converti une chaine séparée par des - en tableau js. => a3-v2-r3 => ["a3","v2","r3"];
   var genomeText = urlParams.get('genome');
   var genome = genomeText.split("-");
 
-  console.log(genomeText);
-console.log(genome);
 
 //////// création de svg dynamique /////
   // Variable qui représente l'élément body sur lequel on se croche pour générer le contenu via d3.js
@@ -179,7 +175,7 @@ console.log(genome);
   showGenome(genome); // affiche le genome dans la page, visible lors de l'impression.
 
   // affiche la zone blockPseudo
-  showPseudo(markDefautlWidth);
+  //showPseudo(markDefautlWidth);
 
 
   /**
