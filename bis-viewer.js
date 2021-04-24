@@ -39,6 +39,21 @@
   var numberOfCode = d3.select("#"+htmlIdPrefix+"numberOfCode").node().value;
 
 
+  /////////// Récupération des paramètres passé dans l'url ////////////
+
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+
+  console.log(queryString);
+  console.log(urlParams);
+
+  // on converti une chaine séparée par des - en tableau js. => a3-v2-r3 => ["a3","v2","r3"];
+  var genomeText = urlParams.get('genome');
+  var genome = genomeText.split("-");
+
+  console.log(genomeText);
+console.log(genome);
+
 //////// création de svg dynamique /////
   // Variable qui représente l'élément body sur lequel on se croche pour générer le contenu via d3.js
   var htmlBody = d3.select("#"+htmlIdPrefix+"zone");
@@ -158,7 +173,7 @@
   //showAllSegment();
 
   //var genome = ["va","a3","o2","b5"];
-  var genome = genomeGenerator(numberOfCode);
+  //var genome = genomeGenerator(numberOfCode);
   // showMarkFromCode("vc"); // affiche le(s) segments qui correspondent à un code.
   showMarkFromGenome(genome); // le génome est un tableau de code. ex: ["va","a3","o2","b5"]
   showGenome(genome); // affiche le genome dans la page, visible lors de l'impression.
