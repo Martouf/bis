@@ -228,4 +228,8 @@ svg{
   .paperGenome::before{
     content: "code: ";
   }
+  #genome{
+    position: fixed;
+    bottom: 0px;
+  }
 }
